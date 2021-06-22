@@ -7,6 +7,7 @@ defmodule Nasa.CLI do
 
   def main([]) do
     IO.read(:stdio, :all)
+    |> Nasa.process()
   end
 
   defp print_help do

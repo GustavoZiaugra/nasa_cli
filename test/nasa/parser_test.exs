@@ -8,12 +8,25 @@ defmodule Nasa.ParserTest do
              5 5
              1 2 N
              LMLMLMLMM
+             1 2 N
+             LMLMLMLMM
              """
              |> Parser.stream_to_struct!() ==
                [
-                 %Nasa.Matrix{max_x: "5", max_y: "5"},
-                 %Nasa.Sonar{coordinate: "N", pos_x: "1", pos_y: "2"},
-                 %Nasa.Moviment{actions: ["L", "M", "L", "M", "L", "M", "L", "M", "M"]}
+                 %{
+                   matrix: %Nasa.Matrix{max_x: "5", max_y: "5"},
+                   moviment: %Nasa.Moviment{
+                     actions: ["L", "M", "L", "M", "L", "M", "L", "M", "M"]
+                   },
+                   sonar: %Nasa.Sonar{coordinate: "N", pos_x: "1", pos_y: "2"}
+                 },
+                 %{
+                   matrix: %Nasa.Matrix{max_x: "5", max_y: "5"},
+                   moviment: %Nasa.Moviment{
+                     actions: ["L", "M", "L", "M", "L", "M", "L", "M", "M"]
+                   },
+                   sonar: %Nasa.Sonar{coordinate: "N", pos_x: "1", pos_y: "2"}
+                 }
                ]
     end
   end

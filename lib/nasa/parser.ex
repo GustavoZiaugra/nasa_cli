@@ -6,12 +6,21 @@ defmodule Nasa.Parser do
   alias Nasa.{Sonar, Matrix, Moviment}
 
   def stream_to_struct!(stream) do
-    stream
-    |> String.split("\n")
-    |> Enum.filter(&("" != &1))
-    |> Enum.filter(&(!is_nil(&1)))
-    |> Enum.reduce([], fn line, acc -> [to_struct!(line) | acc] end)
-    |> Enum.reverse()
+    parsed_stream =
+      stream
+      |> String.split("\n")
+      |> Enum.filter(&("" != &1))
+      |> Enum.filter(&(!is_nil(&1)))
+      |> Enum.reduce([], fn line, acc -> [to_struct!(line) | acc] end)
+      |> Enum.reverse()
+
+    [matrix | content] = parsed_stream
+
+    content
+    |> Enum.chunk_every(2)
+    |> Enum.into([], fn [sonar, moviment] ->
+      %{matrix: matrix, sonar: sonar, moviment: moviment}
+    end)
   end
 
   defp to_struct!(line) do

@@ -3,16 +3,9 @@ defmodule Nasa do
   Documentation for `Nasa`.
   """
 
-  @doc """
-  Hello world.
+  alias Nasa.Parser
 
-  ## Examples
-
-      iex> Nasa.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def process(stream) do
+    Parser.stream_to_struct!(stream)
   end
 end
