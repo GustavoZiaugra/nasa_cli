@@ -18,6 +18,9 @@ defmodule Nasa.Sonar do
           coordinate: String.t()
         }
 
+  @doc """
+  Responsible to receive a line from a stream, parse it and set as Sonar structure.
+  """
   @spec apply(String.t()) :: Sonar.t()
   def apply(line) do
     [pos_x, pos_y, coordinate] =
@@ -31,6 +34,9 @@ defmodule Nasa.Sonar do
     %Sonar{pos_x: int_pos_x, pos_y: int_pos_y, coordinate: coordinate}
   end
 
+  @doc """
+  Responsible to update the new coordinate from a Sonar according to the params.
+  """
   @spec change_coordinate(Sonar.t(), String.t()) :: {:ok, Sonar.t()}
   def change_coordinate(%Sonar{} = sonar, moviment) do
     new_coordinate = @coordination[moviment][sonar.coordinate]
@@ -40,6 +46,9 @@ defmodule Nasa.Sonar do
     {:ok, sonar}
   end
 
+  @doc """
+  Responsible to update the new position from a Sonar according to the params.
+  """
   @spec change_position(Sonar.t(), Matrix.t()) :: {:ok, Sonar.t()}
   def change_position(%Sonar{} = sonar, matrix) do
     sonar =

@@ -11,6 +11,9 @@ defmodule Nasa.Moviment do
           actions: list()
         }
 
+  @doc """
+  Responsible to receive a line from a stream, parse it and set as Moviment structure.
+  """
   @spec apply(String.t()) :: __MODULE__.t()
   def apply(line) do
     line =

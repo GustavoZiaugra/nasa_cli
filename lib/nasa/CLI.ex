@@ -3,6 +3,9 @@ defmodule Nasa.CLI do
   Command Line Interface for Nasa.
   """
 
+  @doc """
+  Responsible to receive a stream and process the content.
+  """
   @spec main(maybe_improper_list()) :: :ok | [any()]
   def main([option | _]) when option in ["-h", "--help"], do: print_help()
 

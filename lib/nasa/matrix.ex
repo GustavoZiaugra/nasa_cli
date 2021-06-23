@@ -11,6 +11,9 @@ defmodule Nasa.Matrix do
           max_y: integer()
         }
 
+  @doc """
+  Responsible to receive a line from a stream, parse it and set as Matrix structure.
+  """
   @spec apply(String.t()) :: __MODULE__.t()
   def apply(line) do
     [max_x, max_y] =

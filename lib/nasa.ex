@@ -5,6 +5,9 @@ defmodule Nasa do
 
   alias Nasa.{Sonar, Parser, Printer}
 
+  @doc """
+  Responsible to process a stream and print the result of the operation on the screen.
+  """
   @spec process(binary()) :: [any()]
   def process(stream) do
     Parser.stream_to_struct!(stream)
