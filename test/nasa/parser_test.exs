@@ -14,18 +14,18 @@ defmodule Nasa.ParserTest do
              |> Parser.stream_to_struct!() ==
                [
                  %{
-                   matrix: %Nasa.Matrix{max_x: "5", max_y: "5"},
+                   matrix: %Nasa.Matrix{max_x: 5, max_y: 5},
                    moviment: %Nasa.Moviment{
                      actions: ["L", "M", "L", "M", "L", "M", "L", "M", "M"]
                    },
-                   sonar: %Nasa.Sonar{coordinate: "N", pos_x: "1", pos_y: "2"}
+                   sonar: %Nasa.Sonar{coordinate: "N", pos_x: 1, pos_y: 2}
                  },
                  %{
-                   matrix: %Nasa.Matrix{max_x: "5", max_y: "5"},
+                   matrix: %Nasa.Matrix{max_x: 5, max_y: 5},
                    moviment: %Nasa.Moviment{
                      actions: ["L", "M", "L", "M", "L", "M", "L", "M", "M"]
                    },
-                   sonar: %Nasa.Sonar{coordinate: "N", pos_x: "1", pos_y: "2"}
+                   sonar: %Nasa.Sonar{coordinate: "N", pos_x: 1, pos_y: 2}
                  }
                ]
     end

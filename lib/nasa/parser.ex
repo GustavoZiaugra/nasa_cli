@@ -29,7 +29,7 @@ defmodule Nasa.Parser do
     |> set_struct(line)
   end
 
-  def identify_content(line) do
+  defp identify_content(line) do
     case String.length(line) do
       3 -> :matrix
       5 -> :sonar
@@ -37,11 +37,11 @@ defmodule Nasa.Parser do
     end
   end
 
-  def set_struct(content_type, line) do
+  defp set_struct(content_type, line) do
     case content_type do
       :matrix -> Matrix.apply(line)
       :sonar -> Sonar.apply(line)
-      :moviments -> Moviment.build(line)
+      :moviments -> Moviment.apply(line)
     end
   end
 end

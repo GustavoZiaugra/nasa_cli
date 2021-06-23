@@ -11,7 +11,7 @@ defmodule Nasa.Moviment do
           actions: List.t()
         }
 
-  def build(line) do
+  def apply(line) do
     line =
       String.split(line, "")
       |> Enum.filter(&("" != &1))

@@ -17,6 +17,9 @@ defmodule Nasa.Matrix do
       |> Enum.filter(&("" != &1))
       |> Enum.filter(&(" " != &1))
 
-    %Matrix{max_x: max_x, max_y: max_y}
+    int_max_pos_x = String.to_integer(max_x)
+    int_max_pos_y = String.to_integer(max_y)
+
+    %Matrix{max_x: int_max_pos_x, max_y: int_max_pos_y}
   end
 end
