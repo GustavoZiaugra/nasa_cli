@@ -1,15 +1,15 @@
 defmodule Nasa do
   @moduledoc """
-  Documentation for `Nasa`.
+  Main module responsible to run the process.
   """
 
-  alias Nasa.{Sonar, Parser}
+  alias Nasa.{Sonar, Parser, Printer}
 
   def process(stream) do
     Parser.stream_to_struct!(stream)
     |> Enum.map(fn content ->
       apply_operation(content)
-      |> IO.inspect()
+      |> Printer.print()
     end)
   end
 
