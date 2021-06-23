@@ -3,6 +3,7 @@ defmodule Nasa.CLI do
   Command Line Interface for Nasa.
   """
 
+  @spec main(maybe_improper_list()) :: :ok | [any()]
   def main([option | _]) when option in ["-h", "--help"], do: print_help()
 
   def main([]) do

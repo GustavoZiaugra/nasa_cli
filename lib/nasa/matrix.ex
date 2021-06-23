@@ -7,10 +7,11 @@ defmodule Nasa.Matrix do
   defstruct [:max_x, :max_y]
 
   @type t :: %__MODULE__{
-          max_x: Integer.t(),
-          max_y: Integer.t()
+          max_x: integer(),
+          max_y: integer()
         }
 
+  @spec apply(String.t()) :: __MODULE__.t()
   def apply(line) do
     [max_x, max_y] =
       String.split(line, "")

@@ -3,6 +3,7 @@ defmodule Nasa.Sonar do
   Struct for a Sonar
   """
   alias __MODULE__
+  alias Nasa.Matrix
 
   defstruct [:pos_x, :pos_y, :coordinate]
 
@@ -12,11 +13,12 @@ defmodule Nasa.Sonar do
   }
 
   @type t :: %__MODULE__{
-          pos_x: Integer.t(),
-          pos_y: Integer.t(),
+          pos_x: integer(),
+          pos_y: integer(),
           coordinate: String.t()
         }
 
+  @spec apply(String.t()) :: Sonar.t()
   def apply(line) do
     [pos_x, pos_y, coordinate] =
       String.split(line, "")
@@ -29,6 +31,7 @@ defmodule Nasa.Sonar do
     %Sonar{pos_x: int_pos_x, pos_y: int_pos_y, coordinate: coordinate}
   end
 
+  @spec change_coordinate(Sonar.t(), String.t()) :: {:ok, Sonar.t()}
   def change_coordinate(%Sonar{} = sonar, moviment) do
     new_coordinate = @coordination[moviment][sonar.coordinate]
 
@@ -37,6 +40,7 @@ defmodule Nasa.Sonar do
     {:ok, sonar}
   end
 
+  @spec change_position(Sonar.t(), Matrix.t()) :: {:ok, Sonar.t()}
   def change_position(%Sonar{} = sonar, matrix) do
     sonar =
       case sonar.coordinate do

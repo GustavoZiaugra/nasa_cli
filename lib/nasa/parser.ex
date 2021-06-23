@@ -5,6 +5,7 @@ defmodule Nasa.Parser do
 
   alias Nasa.{Sonar, Matrix, Moviment}
 
+  @spec stream_to_struct!(String.t()) :: list()
   def stream_to_struct!(stream) do
     parsed_stream =
       stream

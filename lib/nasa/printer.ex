@@ -5,6 +5,7 @@ defmodule Nasa.Printer do
 
   alias Nasa.Sonar
 
+  @spec print(Sonar.t()) :: :ok
   def print(%Sonar{} = sonar) do
     "#{sonar.pos_x} #{sonar.pos_y} #{sonar.coordinate}"
     |> IO.puts()

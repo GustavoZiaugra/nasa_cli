@@ -5,6 +5,7 @@ defmodule Nasa do
 
   alias Nasa.{Sonar, Parser, Printer}
 
+  @spec process(binary()) :: [any()]
   def process(stream) do
     Parser.stream_to_struct!(stream)
     |> Enum.map(fn content ->

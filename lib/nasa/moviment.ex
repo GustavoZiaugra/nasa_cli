@@ -8,9 +8,10 @@ defmodule Nasa.Moviment do
   defstruct [:actions]
 
   @type t :: %__MODULE__{
-          actions: List.t()
+          actions: list()
         }
 
+  @spec apply(String.t()) :: __MODULE__.t()
   def apply(line) do
     line =
       String.split(line, "")
