@@ -12,6 +12,9 @@ defmodule Nasa.Sonar do
     "R" => %{"E" => "S", "N" => "E", "W" => "N", "S" => "W"}
   }
 
+  @min_x 0
+  @min_y 0
+
   @type t :: %__MODULE__{
           pos_x: integer(),
           pos_y: integer(),
@@ -101,11 +104,23 @@ defmodule Nasa.Sonar do
       case axis do
         :x ->
           new_pos_x = sonar.pos_x - 1
-          Map.put(sonar, :pos_x, new_pos_x)
+
+          if new_pos_x < @min_x do
+            raise RuntimeError,
+                  "The pos x of the Sonar cannot be minor than the min_x of the Matrix"
+          else
+            Map.put(sonar, :pos_x, new_pos_x)
+          end
 
         :y ->
           new_pos_y = sonar.pos_y - 1
-          Map.put(sonar, :pos_y, new_pos_y)
+
+          if new_pos_y < @min_y do
+            raise RuntimeError,
+                  "The pos y of the Sonar cannot be minor than the min_y of the Matrix"
+          else
+            Map.put(sonar, :pos_y, new_pos_y)
+          end
       end
 
     sonar

@@ -64,6 +64,28 @@ defmodule Nasa.SonarTest do
                      Sonar.change_position(sonar, matrix)
                    end
     end
+
+    test "it should raise a RunTimeError if new pos x is minor than the matrix min pos x" do
+      sonar = %Sonar{pos_x: 0, pos_y: 2, coordinate: "W"}
+      matrix = %Matrix{max_x: 5, max_y: 2}
+
+      assert_raise RuntimeError,
+                   "The pos x of the Sonar cannot be minor than the min_x of the Matrix",
+                   fn ->
+                     Sonar.change_position(sonar, matrix)
+                   end
+    end
+
+    test "it should raise a RunTimeError if new pos y is minor than the matrix min pos y" do
+      sonar = %Sonar{pos_x: 1, pos_y: 0, coordinate: "S"}
+      matrix = %Matrix{max_x: 5, max_y: 2}
+
+      assert_raise RuntimeError,
+                   "The pos y of the Sonar cannot be minor than the min_y of the Matrix",
+                   fn ->
+                     Sonar.change_position(sonar, matrix)
+                   end
+    end
   end
 
   describe "Sonar.change_coordinate/2" do
